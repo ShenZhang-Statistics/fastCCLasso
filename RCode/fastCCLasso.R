@@ -4,7 +4,7 @@
 # Referece:   Zhang, S., Fang, H., and Hu, T. (2024), “fastCCLasso: Fast 
 #             and efficient algorithm for estimating correlation matrix 
 #             from compositional data,” Submitted.
-#  Rcode  :   https://github.com/ShenZhangStatistics/fastCCLasso
+#  Rcode  :   https://github.com/ShenZhang-Statistics/fastCCLasso
 #-------------------------------------------------------------------------------
 # Author : Zhang Shen (Capital Normal University)
 # Email  : zhangshen@cnu.edu.cn
