@@ -35,9 +35,10 @@
 #   lambda_best ------ the optimal turning parameter
 #       info_cv ------ information for cross validation
 #        p_vals ------ p-values for elements of rho equal 0 or not
+#        aa, bb ------ the diagonal elements of the weight matrics A and B in fastCCLasso, respectively.
 #-------------------------------------------------------------------------------
 fastCCLasso <- function(xx, isCnt = FALSE, pseudo = 0.5, k_cv = 3, 
-	lam_min_ratio = 1E-4, k_max = 20, n_boot=100) {
+	lam_min_ratio = 1E-4, k_max = 20, n_boot=100, aa=NULL, bb=NULL) {
 	n = nrow(xx);
 	p = ncol(xx);
 	if(isCnt) {
@@ -46,8 +47,13 @@ fastCCLasso <- function(xx, isCnt = FALSE, pseudo = 0.5, k_cv = 3,
 	};
 	xx2 = log(xx) - rowMeans(log(xx));
 	vxx2 = stats::var(xx2);
-	aa = rep(1, p);
-	bb = 1 / diag(vxx2);		
+	
+	if(is.null(aa)){
+           aa = rep(1, p);
+        }
+        if(is.null(bb)){
+           bb = 1 / diag(vxx2);
+        }		
 	
 	#-Golden section method for the selection of lambda (log10 scale)
 	xx = vxx2 * (aa * rep(bb, each = p) + bb * rep(aa, each = p))/2;
